@@ -1,3 +1,14 @@
+package com.myapp.quickchat;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Shiko
+ */
 public class Login {
 
     private String username;
@@ -5,18 +16,19 @@ public class Login {
     private String cellPhone;
 
     public boolean checkUserName(String username) {
-        return username.contains("_") && username.length() <= 5;
+        return username != null && username.contains("_") && username.length() <= 5;
     }
 
     public boolean checkPasswordComplexity(String password) {
-        return password.length() >= 8 &&
+        return password != null &&
+               password.length() >= 8 &&
                password.matches(".*[A-Z].*") &&
                password.matches(".*[0-9].*") &&
                password.matches(".*[!@#$%^&*()].*");
     }
 
     public boolean checkCellPhoneNumber(String cellPhone) {
-        return cellPhone.matches("^\\+27\\d{9}$");
+        return cellPhone != null && cellPhone.matches("^\\+27\\d{9}$");
     }
 
     public String registerUser(String username, String password, String cellPhone) {
@@ -37,16 +49,19 @@ public class Login {
         this.password = password;
         this.cellPhone = cellPhone;
 
-        return "User registered successfully.";
+        return "User has been registered successfully.";
     }
 
-    public boolean loginUser(String username, String password) {
-        return this.username.equals(username) && this.password.equals(password);
+    public boolean loginUser(String inputUsername, String inputPassword) {
+        return inputUsername != null &&
+               inputPassword != null &&
+               inputUsername.equals(this.username) &&
+               inputPassword.equals(this.password);
     }
 
-    public String returnLoginStatus(boolean success) {
-        if (success) {
-            return "Welcome user, it is great to see you again.";
+    public String returnLoginStatus(boolean loginSuccess) {
+        if (loginSuccess) {
+            return "Welcome user, user it is great to see you.";
         } else {
             return "Username or password incorrect, please try again.";
         }
